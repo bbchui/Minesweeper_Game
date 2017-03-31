@@ -15,6 +15,9 @@ class Board
 
     10.times do |bomb|
       pos = [rand(9),rand(9)]
+      while board[pos[0]][pos[1]].bomb?
+        pos = [rand(9),rand(9)]
+      end
       board[pos[0]][pos[1]] = Tile.new(true, false)
       adjacent = []
       (-1..1).each do |x|
@@ -23,6 +26,7 @@ class Board
             (pos[1] + y) < 0 || (pos[0] + x) > 8 || (pos[1] + y) > 8
         end
       end
+      adjacent - pos
 
       adjacent.each do |adj|
         # debugger
@@ -43,11 +47,11 @@ class Board
   #   arr
   # end
 
-  def random_pos
-    x = rand(9)
-    y = rand(9)
-    [x, y]
-  end
+  # def random_pos
+  #   x = rand(9)
+  #   y = rand(9)
+  #   [x, y]
+  # end
 
   def render
     print "  "

@@ -19,6 +19,10 @@ class Tile
     @bomb
   end
 
+  def flag
+    @flagged = @flagged ? false : true
+  end
+
   def to_s
     return "F" if @flagged
     return "*" unless @revealed
