@@ -1,4 +1,6 @@
 require 'byebug'
+require 'colorize'
+
 class Tile
 
   attr_accessor :bomb_count
@@ -24,9 +26,9 @@ class Tile
   end
 
   def to_s
-    return "F" if @flagged
+    return "F".colorize(:red) if @flagged
     return "*" unless @revealed
-    return "#{bomb_count}" unless @bomb_count == 0
+    return "#{bomb_count}".colorize(:blue) unless @bomb_count == 0
     "_"
   end
 end
